@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+<h1>Balkanistan !</h1>
+
+<h2>4 entités : </h2>
+<ul>
+    <li>Une entité "Mairie" qui comporte : 
+        <ul>
+            <li>Une propriété "ville" unique</li>
+        </ul>
+    </li>
+    <li>Une entité "Affaire" qui comporte : 
+        <ul>
+            <li>Une propriété "designation" unique</li>
+        </ul>
+    </li>
+    <li>Une entité "Parti" qui comporte : 
+        <ul>
+            <li>Une propriété "nom" unique</li>
+        </ul>
+    </li>
+    <li>Une entité "Politicien" qui comporte : 
+        <ul>
+            <li>Une propriété "nom" unique</li>
+            <li>Une propriété "sexe" de valeur "M" ou "F"</li>
+            <li>Une propriété "nom" entier >= 18</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Les actions qui seront proposées aux utilisateurs : </h2>
+<ul>
+    <li><strike>Lister les mairies</strike></li>
+    <li><strike>Lister les partis</strike></li>
+    <li><strike>Lister les politiens</strike></li>
+    <li><strike>Lister les affaires</strike></li>
+    <li><strike>Ajouter une mairie</strike></li>
+    <li><strike>Ajouter un parti</strike></li>
+    <li><strike>Ajouter un politicien</strike></li>
+    <li><strike>Modifier un politicien (sauf son nom)</strike></li>
+    <li><strike>Supprimer un politicien</strike></strike></li>
+    <li><strike>Supprimer un parti (sans politicien)</strike></li>
+    <li><strike>Supprimer un mairie (sans politicien)</strike></li>
+    <li><strike>Supprimer une affaire (sans politicien)</strike></li>
+    <li><strike>Rechercher des affaires (par sa désignation)</strike></li>
+    <li><strike>Afficher un parti (+ politiciens affiliés + moyenne d'âge / parité des politiciens)</strike></li>
+    <li><strike>Afficher une affaire (+ politiciens impliqués)</strike></li>
+    <li><strike>Gestion des "users" : 
+        <ul>
+            <li>Les utilisateurs pourront tout voir</li>
+            <li>Le secrétaire pourra ajouter/modifier</li>
+            <li>L'administrateur pourra supprimer</li>
+        </ul>
+    </strike></li>
+</ul>
+Vous pouvez enrichir librement ce projet avec les notions étudiées en cours. Faites des choix de cascade ou non sur les associations d'entités. Vous êtes libre de l'ergonomie de vos pages. Liez vos différentes pages par des liens. Faites un menu, un layout général. Vous pouvez regrouper plusieurs actions dans une même page.
+{% endblock %}

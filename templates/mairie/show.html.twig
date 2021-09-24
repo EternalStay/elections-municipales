@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir une Mairie{% endblock %}
+{% block body %}
+    <h1>Voir une Mairie</h1>
+    <a class="badge badge-dark mb-4" href="{{ path('mairie_index') }}">> Retourner à la liste <</a>
+
+    {% if erreur is defined %}
+    <div class="alert alert-danger" role="alert">{{ erreur }}</div>
+    {% endif %}
+
+    <table class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th scope="col">Ville : </th>
+                <td>{{ mairie.ville }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Politiciens inscrits : </th>
+                <td>
+                    <ul>
+                        {% for politicien in mairie.politiciensInscrits %}
+                        <li>{{ politicien.nom }}</li>
+                        {% else %}
+                        <li>Aucun politicien inscrit.</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    {% if is_granted('ROLE_MODO') %}
+        <a class="btn btn-outline-primary" href="{{ path('mairie_edit', {'id': mairie.id}) }}">Modifier</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ include('mairie/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

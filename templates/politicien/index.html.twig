@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Politiciens{% endblock %}
+
+{% block body %}
+    <h1>Liste des Politiciens</h1>
+    {% if is_granted('ROLE_MODO') %}
+        <a class="badge badge-dark mb-4" href="{{ path('politicien_new') }}">> Nouveau politicien <</a>
+    {% endif %}
+
+    {% if success is defined %}
+    <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% endif %}
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Sexe</th>
+                <th scope="col">Âge</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for politicien in politiciens %}
+            <tr>
+                <td>{{ politicien.nom }}</td>
+                <td>
+                    {% if politicien.sexe == 'M' %}
+                    Masculin
+                    {% else %}
+                    Féminin
+                    {% endif %}
+                </td>
+                <td>{{ politicien.age }} ans</td>
+                <td>
+                    <a class="badge badge-dark" href="{{ path('politicien_show', {'id': politicien.id}) }}">Voir</a>
+                    {% if is_granted('ROLE_MODO') %}
+                        <a class="badge badge-dark" href="{{ path('politicien_edit', {'id': politicien.id}) }}">Modifier</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

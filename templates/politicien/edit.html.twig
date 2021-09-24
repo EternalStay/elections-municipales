@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une Politicien{% endblock %}
+
+{% block body %}
+    <h1>Modifier une Politicien</h1>
+    <a class="badge badge-dark mb-4" href="{{ path('politicien_index') }}">> Retourner à la liste <</a>
+
+    {{ include('politicien/_form.html.twig', {'button_label': 'Modifier'}) }}
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    	{{ include('politicien/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une Mairie{% endblock %}
+
+{% block body %}
+    <h1>Modifier une Mairie</h1>
+    <a class="badge badge-dark mb-4" href="{{ path('mairie_index') }}">> Retourner à la liste <</a>
+
+    {{ include('mairie/_form.html.twig', {'button_label': 'Modifier'}) }}
+    
+    {% if is_granted('ROLE_ADMIN') %}
+    	{{ include('mairie/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

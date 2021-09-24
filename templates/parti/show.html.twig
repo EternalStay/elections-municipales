@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir une Parti{% endblock %}
+{% block body %}
+    <h1>Voir une Parti</h1>
+    <a class="badge badge-dark mb-4" href="{{ path('parti_index') }}">> Retourner à la liste <</a>
+
+    {% if erreur is defined %}
+    <div class="alert alert-danger" role="alert">{{ erreur }}</div>
+    {% endif %}
+
+    <table class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th scope="col">Nom : </th>
+                <td>{{ parti.nom }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Politiciens inclus : </th>
+                <td>
+                    <ul>
+                        {% for politicien in parti.politiciens %}
+                        <li>{{ politicien.nom }}</li>
+                        {% else %}
+                        <li>Aucun politicien dans cette liste.</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">Âge moyen : </th>
+                <td>{{ ageMoyen }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Parités : </th>
+                <td>M : {{ parites['M'] }} / F : {{ parites['F'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    {% if is_granted('ROLE_MODO') %}
+        <a class="btn btn-outline-primary" href="{{ path('parti_edit', {'id': parti.id}) }}">Modifier</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ include('parti/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

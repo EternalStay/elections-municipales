@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Mairies{% endblock %}
+
+{% block body %}
+    <h1>Liste des Mairies</h1>
+    {% if is_granted('ROLE_MODO') %}
+        <a class="badge badge-dark mb-4" href="{{ path('mairie_new') }}">> Nouvelle mairie <</a>
+    {% endif %}
+
+    {% if success is defined %}
+    <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% endif %}
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Ville</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mairie in mairies %}
+            <tr>
+                <td>{{ mairie.ville }}</td>
+                <td>
+                    <a class="badge badge-dark" href="{{ path('mairie_show', {'id': mairie.id}) }}">Voir</a>
+                    {% if is_granted('ROLE_MODO') %}
+                        <a class="badge badge-dark" href="{{ path('mairie_edit', {'id': mairie.id}) }}">Modifier</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

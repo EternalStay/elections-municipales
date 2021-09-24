@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une Mairie{% endblock %}
+
+{% block body %}
+    <h1>Créer une Mairie</h1>
+    <a class="badge badge-dark mb-4" href="{{ path('mairie_index') }}">> Retourner à la liste <</a>
+
+    {{ include('mairie/_form.html.twig') }}
+{% endblock %}

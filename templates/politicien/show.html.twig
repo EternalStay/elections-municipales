@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir une Politicien{% endblock %}
+{% block body %}
+    <h1>Voir une Politicien</h1>
+    <a class="badge badge-dark mb-4" href="{{ path('politicien_index') }}">> Retourner à la liste <</a>
+
+    <table class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th scope="col">Nom : </th>
+                <td>{{ politicien.nom }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Sexe : </th>
+                <td>
+                    {% if politicien.sexe == 'M' %}
+                    Masculin
+                    {% else %}
+                    Féminin
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">Âge : </th>
+                <td>{{ politicien.age }} ans</td>
+            </tr>
+            <tr>
+                <th scope="col">Mairie candidatée : </th>
+                <td>{{ politicien.mairie }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Parti : </th>
+                <td>{{ politicien.parti }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Affaires : </th>
+                <td>
+                    <ul>
+                        {% for affaire in politicien.affairesImpliquees %}
+                        <li>{{ affaire.designation }}</li>
+                        {% else %}
+                        <li>Aucune affaire concernant ce politicien.</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    {% if is_granted('ROLE_MODO') %}
+        <a class="btn btn-outline-primary" href="{{ path('politicien_edit', {'id': politicien.id}) }}">Modifier</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ include('politicien/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}
